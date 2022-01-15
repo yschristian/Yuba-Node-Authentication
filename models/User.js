@@ -1,19 +1,32 @@
-const mongoose = require('mongoose');
-
+const mongoose = require('mongoose')
+const {isEmail} = require('validator')
 const userSchema = new mongoose.Schema({
-     email:{
+       email:{
           type:String,
-          required:true,
+          required:[true,'Please enter Email'],
           unique:true,
-          lowercase:true
-
+          lowercase:true,
+          //validate email
+          validate:[isEmail,'Please Enter a valid Email']
      },
-   password:{
+       password:{
            type:String,
-           required:true,
-           minLength:6
+           required:[true,'Please enter a password'],
+           minlength:[6,'Minimum length of password is 6 charcter']
    },
 })
-const User =  mongoose.model('user',userSchema);
+       //hooks
+//fire a function after doc saved to database
+       
+            userSchema.post('save',function(doc,next){
+           console.log('new user was created & saved',doc);
+           next();
+  })
 
+  //fire function before  doc saved
+           userSchema.pre('save',function(next) {
+           console.log('user about created and saved',this);
+           next();
+      })
+     const User =  mongoose.model('user',userSchema);
 module.exports=User;
