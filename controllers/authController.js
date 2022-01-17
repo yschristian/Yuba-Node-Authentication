@@ -9,7 +9,7 @@ const User = require('../models/User');
 // duplicate error code
         if(err.code===11000){
 
-         errrors.email="That emaiil is already registerd"
+         errors.email="That emaiil is already registerd"
          return errors;
      }
        //validation errors

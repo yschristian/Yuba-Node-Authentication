@@ -23,5 +23,13 @@ app.set('view engine','ejs');
  app.get('/smoothies',(req,res)=>{res.render('smoothies')});
  app.use(authRoutes);
 
+//cookie
+app.get('/set-cookies',(req,res)=>{
+     
+    res.setHeader('Set-Cookie','newUser=true');
+    res.send('i  got cookie');
 
-   
+});
+app.get('/read-cookie',(req,res)=>{
+
+})
