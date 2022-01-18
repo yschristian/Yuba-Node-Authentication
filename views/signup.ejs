@@ -13,14 +13,38 @@
     <button>Sign up</button>
  </form>
  <script>
+ const errorEmail = document.querySelector(".error.email");
+ const errorPassword = document.querySelector(".error.password");
  const form = document.querySelector('form');
-     form.addEventListener('submit',(e)=>{
+     form.addEventListener('submit',async(e)=>{
          e.preventDefault();
-         //get the  values
-         const email= form.email.value;
-         const password = form.password.value;
 
-    console.log(email,password);
+         //reset errors
+            errorEmail.textContent = '';
+              errorPassword.textContent = '';
+         //get the  values
+           const email= form.email.value;
+          const password = form.password.value;
+     try {
+            const res =  await fetch('/signup',{
+             method:'POST',
+             body:JSON.stringify({email,password}),
+             headers:{'Content-Type':'application/json'}
+            })
+            const data = await res.json();
+            console.log(data);
+            if(data.errors){
+             errorEmail.textContent =data.errors.email;
+             errorPassword.textContent=data.errors.password;
+            }
+       //presence of  the  user
+            if(data.user){
+
+              location.assign('/')
+            }
+  } catch (error) {
+            console.log(err);
+        }    
     
      })
 
