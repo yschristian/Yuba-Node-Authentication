@@ -13,15 +13,16 @@
     <button>Sign up</button>
  </form>
  <script>
- const errorEmail = document.querySelector(".error.email");
- const errorPassword = document.querySelector(".error.password");
+ const errorEmail = document.querySelector(".email.error");
+ const errorPassword = document.querySelector(".rpassword.error");
  const form = document.querySelector('form');
+ 
      form.addEventListener('submit',async(e)=>{
          e.preventDefault();
 
          //reset errors
             errorEmail.textContent = '';
-              errorPassword.textContent = '';
+            errorPassword.textContent = '';
          //get the  values
            const email= form.email.value;
           const password = form.password.value;
