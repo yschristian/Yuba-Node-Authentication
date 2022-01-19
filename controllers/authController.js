@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken')
      errors.email = 'that email is not  registered'
    }
    //incorrect password
-   if(err.message === 'incorrect email'){
+   if(err.message === 'incorrect password'){
     errors.password = 'that password is not  registered'
   }
 // duplicate error code

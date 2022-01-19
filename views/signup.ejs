@@ -14,7 +14,7 @@
  </form>
  <script>
  const errorEmail = document.querySelector(".email.error");
- const errorPassword = document.querySelector(".rpassword.error");
+ const errorPassword = document.querySelector(".password.error");
  const form = document.querySelector('form');
  
      form.addEventListener('submit',async(e)=>{
@@ -44,7 +44,7 @@
               location.assign('/')
             }
   } catch (error) {
-            console.log(err);
+            console.log(error);
         }    
     
      })
